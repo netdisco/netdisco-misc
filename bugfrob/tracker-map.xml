@@ -15,6 +15,8 @@
   </group>
   <group id="80033">
   <tracker name="Bugs" atid="558508"/>
+  <tracker name="Patches" atid="588510"/>
   <tracker name="Feature Requests" atid="558511"/>
+  <tracker name="Internal" atid="805277"/>
   </group>
 </map>
