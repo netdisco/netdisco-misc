@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  Sourceforge's XML Export doesn't tell you the group ID or the tracker
+  ID (atid) of a given artifact; it just gives the tracker name.
+  This file maps between a (group ID, tracker name) pair and the atid
+  of that tracker.
+
+  $Id$
+-->
+<map>
+  <group id="70362">
+  <tracker name="Bugs" atid="527527"/>
+  <tracker name="Patches" atid="527529"/>
+  <tracker name="Feature Requests" atid="527530"/>
+  </group>
+  <group id="80033">
+  <tracker name="Bugs" atid="558508"/>
+  <tracker name="Feature Requests" atid="558511"/>
+  </group>
+</map>
