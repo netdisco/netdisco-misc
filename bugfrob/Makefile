@@ -6,7 +6,7 @@
 
 PROJECTS=	netdisco snmp-info
 
-all:	${PROJECTS:=-summary.html}
+all:	check-cookies ${PROJECTS:=-summary.html}
 
 clean:
 	rm -f ${PROJECTS:=-summary.html}
@@ -17,9 +17,10 @@ realclean:	clean
 %-summary.html:	%.xml bugs.xsl tracker-map.xml
 	xsltproc bugs.xsl $< > $@
 
-%.xml:	%.grpid check-cookies
+%.xml:	%.grpid
 	xml_export --group=`cat $*.grpid` > $@
 
+.PHONY: check-cookies
 check-cookies:
 	@cookie=$${HOME}/.sfadocmancookies; \
 	 if [ -f $$cookie ]; then \
