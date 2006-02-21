@@ -1,0 +1,56 @@
+#
+# Netdisco Packaging Makefile
+#
+# $Source$
+# $Id$
+#
+
+VERSION = $(shell netdisco/netdisco -v | grep "Netdisco Version" | sed -n -e 's/^.*: //;P')
+MIBS    = $(shell grep ^Version mibs/README | sed -n -e 's/^Version //;P')
+PACKAGE = netdisco
+
+all:
+	echo "Options are : version,dist,dist_mib and  mib-ver,mib-dist"
+
+netdisco:
+	echo "You must check out the netdisco module from CVS (not anon!)"
+
+version: netdisco
+	echo ${VERSION}
+
+dist: version
+	rm -f netdisco/pod2htm*
+	mv netdisco netdisco-${VERSION}
+	find netdisco-$(VERSION) -name CVS > excluded_files
+	echo "netdisco-$(VERSION)/SNMP" >> excluded_files
+	find netdisco-$(VERSION) -name ".*" >> excluded_files
+	tar -X excluded_files -c -v -z -f ${PACKAGE}-${VERSION}.tar.gz netdisco-${VERSION}
+	mv netdisco-${VERSION} netdisco
+
+dist_mib: version
+	rm -f netdisco/pod2htm*
+	mv mibs netdisco
+	mv netdisco netdisco-${VERSION}
+	find netdisco-$(VERSION) -name CVS > excluded_files
+	echo "netdisco-$(VERSION)/SNMP" >> excluded_files
+	find netdisco-$(VERSION) -name ".*" >> excluded_files
+	tar -X excluded_files -c -v -z -f ${PACKAGE}-${VERSION}_with_mibs.tar.gz netdisco-${VERSION}
+	mv netdisco-${VERSION} netdisco
+	mv netdisco/mibs .
+
+mibs:
+	echo "You must check out the mibs module from CVS!"
+
+mib-ver: mibs
+	echo ${MIBS}
+
+mib-dist: mib-ver
+	mv mibs netdisco-mibs-${MIBS}
+	find netdisco-mibs-${MIBS} -name CVS > excluded_files
+	find netdisco-mibs-${MIBS} -name .index >> excluded_files
+	tar -X excluded_files -c -v -z -f netdisco-mibs-${MIBS}.tar.gz netdisco-mibs-${MIBS}
+	mv netdisco-mibs-${MIBS} mibs
+
+.PHONY:all
+
+.SILENT:
