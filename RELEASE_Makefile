@@ -5,18 +5,20 @@
 # $Id$
 #
 
-VERSION = $(shell netdisco/netdisco -v | grep "Netdisco Version" | sed -n -e 's/^.*: //;P')
+VERSION = $(shell sed -n -e "s/^.VERSION = '\(.*\)';$$/\1/p" netdisco/netdisco)
 MIBS    = $(shell grep ^Version mibs/README | sed -n -e 's/^Version //;P')
 PACKAGE = netdisco
 
 all:
-	echo "Options are : version,dist,dist_mib and  mib-ver,mib-dist"
+	@echo "Options are : version,dist,dist_mib and  mib-ver,mib-dist"
 
 netdisco:
-	echo "You must check out the netdisco module from CVS (not anon!)"
+	@echo "You must check out the netdisco module from CVS (not anon!)"
+	@echo "e.g., cvs -d :ext:me@cvs.sourceforge.net:/cvsroot/netdisco co netdisco"
+	@false
 
 version: netdisco
-	echo ${VERSION}
+	@echo netdisco ${VERSION}
 
 dist: version
 	rm -f netdisco/pod2htm*
@@ -27,7 +29,7 @@ dist: version
 	tar -X excluded_files -c -v -z -f ${PACKAGE}-${VERSION}.tar.gz netdisco-${VERSION}
 	mv netdisco-${VERSION} netdisco
 
-dist_mib: version
+dist_mib: version mib-ver
 	rm -f netdisco/pod2htm*
 	mv mibs netdisco
 	mv netdisco netdisco-${VERSION}
@@ -39,10 +41,12 @@ dist_mib: version
 	mv netdisco/mibs .
 
 mibs:
-	echo "You must check out the mibs module from CVS!"
+	@echo "You must check out the mibs module from CVS!"
+	@echo "e.g., cvs -d :ext:me@cvs.sourceforge.net:/cvsroot/netdisco co mibs"
+	@false
 
 mib-ver: mibs
-	echo ${MIBS}
+	@echo mibs ${MIBS}
 
 mib-dist: mib-ver
 	mv mibs netdisco-mibs-${MIBS}
