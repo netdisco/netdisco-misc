@@ -63,7 +63,7 @@ PREP:
     2.  Run perl Makefile.PL to create the Makefile
     3.  Double check the MANIFEST is good by 
          3a. mv MANIFEST MANIFEST.cvs
-         3b. make MANIFEST
+         3b. make manifest
          3c. diff MANIFEST.cvs MANIFEST
          3d. modify and commit as needed
     4.  Check and update the DeviceMatrix.txt and ChangeLog
