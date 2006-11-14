@@ -18,5 +18,24 @@
   <tracker name="Patches" atid="558510"/>
   <tracker name="Feature Requests" atid="558511"/>
   <tracker name="Internal" atid="805277"/>
+  <html-head>
+<TITLE>Netdisco - Bug Summary</TITLE>
+<LINK REL="StyleSheet" HREF="http://netdisco.org/netdisco.css" TYPE="text/css" MEDIA="screen"/>
+<LINK REL="shortcut icon" HREF="http://netdisco.org/netdiscoball.ico" type="image/x-icon"/>
+  </html-head>
+  <html-bodystart>
+<TABLE CLASS="box" WIDTH="90%" BORDER="0" CELLSPACING="0">
+<TR>
+    <TD><IMG SRC="http://netdisco.org/netdiscoball.gif" BORDER="0" ALT="[Disco Ball]"/></TD>
+    <TD CLASS="logo">    <font color="#f5deb3">n e t  d i s c o</font></TD>
+</TR>
+<TR>
+    <TD COLSPAN="2" ALIGN="RIGHT">
+	[<A HREF="http://netdisco.org/">netdisco home</A>]
+        [<A HREF="http://sourceforge.net/projects/netdisco">Source Forge Page</A>]
+    </TD>
+</TR>
+</TABLE>
+  </html-bodystart>
   </group>
 </map>
