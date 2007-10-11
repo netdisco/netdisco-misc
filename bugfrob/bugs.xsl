@@ -115,6 +115,9 @@ Target
 Priority
 </th>
 <th>
+Status
+</th>
+<th>
 Summary
 </th>
 </tr>
@@ -144,6 +147,17 @@ https://sourceforge.net/tracker/?func=detail&amp;group_id=<xsl:value-of select="
 </td>
 <td>
 <xsl:value-of select="field[@name='priority']"/>
+</td>
+<td>
+<xsl:value-of select="field[@name='status']"/>
+<xsl:if test="field[@name='resolution'] != 'None'">
+  <xsl:text> / </xsl:text>
+  <xsl:value-of select="field[@name='resolution']"/>
+</xsl:if>
+<xsl:if test="field[@name='assigned_to'] != 'nobody'">
+  <xsl:text> -&gt; </xsl:text>
+  <xsl:value-of select="field[@name='assigned_to']"/>
+</xsl:if>
 </td>
 <td>
 <xsl:value-of select="field[@name='summary']"/>
