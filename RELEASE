@@ -39,10 +39,10 @@ PREP:
 RELEASE:
     0. Submit to -devel for review and wait.
     1. upload to SF
-        ftp upload.sourceforge.net , put files in /incoming
+        scp netdisco-VERSION.tar.gz user@frs.sourceforge.net:uploads
     2. create new releases (normal and +mib)
         Go to the bottom of the SF file release page:
-	https://sourceforge.net/project/admin/editpackages.php?group_id=80033
+        https://sourceforge.net/project/admin/editpackages.php?group_id=80033
         and click on "add release" for netdisco
         release name: version #  or version #-mibs
         Processor: "Platform Independent"; File type: "Source .gz"
@@ -65,36 +65,44 @@ Make sure that the lib, blib, CVS dirs don't either.
 
 PREP:
     0.  Check out the latest code via developer login
-    1.  Double check the VERSION is set in all modules.
-                         CVS tags are good
-                         Authors and licenses are good
-        Change the -cvs to -beta as needed.
-    2.  Run perl Makefile.PL to create the Makefile
-    3.  Double check the MANIFEST is good by 
+    1.  cd t && push_ver <version> if needed
+    2   Check Authors and licenses are good, update copyrights
+    3.  cvs stat && cvs commit as needed
+    4.  Run perl Makefile.PL to create the Makefile
+    5.  make test
+    6.  Double check the MANIFEST is good by 
          3a. mv MANIFEST MANIFEST.cvs
          3b. make manifest
          3c. diff MANIFEST.cvs MANIFEST
          3d. modify and commit as needed
-    4.  Check and update the DeviceMatrix.txt and ChangeLog
-    5.  Update documentation in Info.pm that creates the README
-    6.  cvs update -d again just in case
-    7.  cvs tag ver_1_x_beta or ver_1_x
-    8.  make README
-    9.  make dist
-    10. unarchive it to a temp dir and check for all files
-    11. check for any extra files 
-    12. Try to install it.
-    13. Commit the README back.
+    7.  Check and update the DeviceMatrix.txt and ChangeLog
+    8.  Update documentation in Info.pm that creates the README
+    9.  cvs update -d again just in case
+   10.  make README
+   11.  Commit the README back.
+   12.  cvs tag ver_2_x
+   13.  make dist
+   14.  unarchive it to a temp dir and check for all files
+   15.  check for any extra files 
+   16.  Try to install it.
 
 RELEASE:
-    1. Submit -beta version to beta testers / devel lists and wait
+    1. Submit -beta version to beta testers / devel lists and wait (optional)
        for at least one person to eye-ball it.
     2. Submit to CPAN
+        ftp to pause.perl.org/incoming
+        wait
+        grant co-maintainer to all other release developers at https://pause.perl.org/pause/authenquery?ACTION=share_perms
+          for the new modules
     3. Submit to Source Forge
+        scp snmp-info--VERSION.tar.gz user@frs.sourceforge.net:uploads
     4. ANNOUNCE at Freshmeat / mailing lists / news groups
         (snmp-info-users, netdisco-users, comp.protocol.snmp, net-snmp-users)
     5. Add news items to SF.net for snmp-info
     6. Update snmp-info.sf.net website
+        ssh -t YOU,snmp-info@shell.sourceforge.net create
+        cd /home/groups/s/sn/snmp-info
+        ./make_index
     7. Update netdisco.org if needed.
     
 $Id$
