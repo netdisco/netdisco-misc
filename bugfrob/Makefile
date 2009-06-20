@@ -47,3 +47,6 @@ check-cookies:
 		echo "And enter your sourceforge password."; \
 		false; \
 	 fi
+
+copy:
+	rsync *-summary.html web.sourceforge.net:netdisco/htdocs/buglist/
