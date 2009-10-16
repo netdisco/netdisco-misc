@@ -21,12 +21,11 @@ PREP:
     0.  double check version number in netdisco and netdisco.pm
         Remove -cvs
     1.  cvs update / commit to sync all devel versions
-    2.  Vi update README.pod, UPGRADE.pod, INSTALL.pod in package/
+    2.  Vi update README.pod, UPGRADE.pod, INSTALL.pod in doc/
         Commit changes to .pod's
-    3.  created upgrade*.sql?  Is pg's @ALL up to date?
-    4.  Update oui.txt and mibs
-    5.  Update ChangeLog
-    6.  make doc; make README; make INSTALL; make UPGRADE; make api_doc
+    3.  created upgrade*.sql?
+    4.  Update ChangeLog
+    5.  make doc; and check that README, UPDATE and INSTALL are updated
     6.  cvs commit
     7.  cvs tag ver_0_9x
     8.  make dist
@@ -39,23 +38,20 @@ PREP:
 RELEASE:
     0. Submit to -devel for review and wait.
     1. upload to SF
-        scp netdisco-VERSION.tar.gz user@frs.sourceforge.net:uploads
-    2. create new releases (normal and +mib)
-        Go to the bottom of the SF file release page:
-        https://sourceforge.net/project/admin/editpackages.php?group_id=80033
-        and click on "add release" for netdisco
-        release name: version #  or version #-mibs
-        Processor: "Platform Independent"; File type: "Source .gz"
-        Only send notice for the +mibs version
-    3. ANNOUNCE to mailing lists / newsgroups
+        see: https://sourceforge.net/apps/trac/sourceforge/wiki/Release%20files%20for%20download
+        in short:
+            go to https://sourceforge.net/project/admin/explorer.php?group_id=80033
+            create a new folder for the release VER (right click)
+            scp <file.tar.gz> <user>,netdisco@frs.sourceforge.net:/home/frs/project/n/ne/netdisco/netdisco/<VER>
+    2. ANNOUNCE to mailing lists / newsgroups
         (snmp-info-users,netdisco-users,mason-users)
-    4. Update freshmeat
-    5. Update netdisco.org
-    6. Add news items on SF site
+    3. Update freshmeat
+    4. Update netdisco.org
+    5. Add news items on SF site
         Make sure to have links at the bottom of the news item
         to the release notes and the file download page.
-    7. Update Demo site. (ouch)
-    8. Watch the SF ranking sore for the next day or two :-)
+    6. Update Demo site. (ouch)
+    7. Watch the SF ranking sore for the next day or two :-)
 
 Release Instructions - SNMP::Info
 
