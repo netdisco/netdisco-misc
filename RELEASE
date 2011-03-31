@@ -91,7 +91,9 @@ RELEASE:
         grant co-maintainer to all other release developers at https://pause.perl.org/pause/authenquery?ACTION=share_perms
           for the new modules
     3. Submit to Source Forge
-        scp snmp-info--VERSION.tar.gz user@frs.sourceforge.net:uploads
+        Create the folder for the new version in the SF web interface (e.g. 2.04)
+        scp snmp-info--VERSION.tar.gz README \
+            YOU,snmp-info@frs.sourceforge.net:/home/frs/project/s/sn/snmp-info/snmp-info/VERSION/
     4. ANNOUNCE at Freshmeat / mailing lists / news groups
         (snmp-info-users, netdisco-users, comp.protocol.snmp, net-snmp-users)
     5. Add news items to SF.net for snmp-info
