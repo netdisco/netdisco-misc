@@ -6,7 +6,7 @@
 #
 
 VERSION = $(shell sed -n -e "s/^.VERSION = '\(.*\)';$$/\1/p" netdisco/netdisco)
-MIBS    = $(shell grep ^Version mibs/README | sed -n -e 's/^Version //;P')
+MIBS    = $(shell grep ^Version netdisco-mibs/README | sed -n -e 's/^Version //;P')
 PACKAGE = netdisco
 
 all:
@@ -31,29 +31,30 @@ dist: version
 
 dist_mib: version mib-ver
 	rm -f netdisco/pod2htm*
-	mv mibs netdisco
+	mv netdisco-mibs netdisco
 	mv netdisco netdisco-${VERSION}
 	find netdisco-$(VERSION) -name CVS > excluded_files
 	echo "netdisco-$(VERSION)/SNMP" >> excluded_files
 	find netdisco-$(VERSION) -name ".*" >> excluded_files
 	tar -X excluded_files -c -v -z -f ${PACKAGE}-${VERSION}_with_mibs.tar.gz netdisco-${VERSION}
 	mv netdisco-${VERSION} netdisco
-	mv netdisco/mibs .
+	mv netdisco/netdisco-mibs .
 
-mibs:
+netdisco-mibs:
 	@echo "You must check out the mibs module from CVS!"
 	@echo "e.g., cvs -d :ext:me@cvs.sourceforge.net:/cvsroot/netdisco co mibs"
 	@false
 
-mib-ver: mibs
-	@echo mibs ${MIBS}
+mib-ver: netdisco-mibs
+	@echo netdisco-mibs ${MIBS}
 
 mib-dist: mib-ver
-	mv mibs netdisco-mibs-${MIBS}
+	mv netdisco-mibs netdisco-mibs-${MIBS}
 	find netdisco-mibs-${MIBS} -name CVS > excluded_files
 	find netdisco-mibs-${MIBS} -name .index >> excluded_files
+	find netdisco-mibs-${MIBS} -name ".git*" >> excluded_files
 	tar -X excluded_files -c -v -z -f netdisco-mibs-${MIBS}.tar.gz netdisco-mibs-${MIBS}
-	mv netdisco-mibs-${MIBS} mibs
+	mv netdisco-mibs-${MIBS} netdisco-mibs
 
 .PHONY:all
 
