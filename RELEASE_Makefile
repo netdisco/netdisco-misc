@@ -3,7 +3,7 @@
 #
 # $Source$
 # $Id$
-# another test
+#
 
 VERSION = $(shell sed -n -e "s/^.VERSION = '\(.*\)';$$/\1/p" netdisco/netdisco)
 MIBS    = $(shell grep ^Version netdisco-mibs/README | sed -n -e 's/^Version //;P')
